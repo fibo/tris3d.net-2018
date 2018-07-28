@@ -1,0 +1,42 @@
+{
+  "name": "tris3d.net",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Play tic tac toe in 3d",
+  "main": "src/client.js",
+  "scripts": {
+    "browserify": "browserify $npm_package_main -t babelify -o public/bundle.js",
+    "lint": "standard",
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fibo/tris3d.net.git"
+  },
+  "keywords": [
+    "tris3d",
+    "multiplayer",
+    "server",
+    "3d",
+    "game"
+  ],
+  "author": "Gianluca Casati (http://g14n.info)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fibo/tris3d.net/issues"
+  },
+  "homepage": "https://tris3d.net",
+  "config": {
+    "port": 3000
+  },
+  "dependencies": {
+    "express": "4.16.3",
+    "internal-ip": "^3.0.1",
+    "socket.io": "2.1.1"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1",
+    "zeroconf-redux": "^3.4.1"
+  }
+}
