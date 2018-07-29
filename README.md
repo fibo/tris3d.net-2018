@@ -4,7 +4,7 @@
 
 ## Deploy
 
-**Only once** Install Heroku CLI, login and add *heroku* git remote
+**Only once** install Heroku CLI, login and add *heroku* git remote
 
 ```bash
 git remote add heroku https://git.heroku.com/tris3d.git

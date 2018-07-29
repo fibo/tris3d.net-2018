@@ -9,9 +9,33 @@
 
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><body>
+
+    <style>
+      body {
+        font-family:  BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+
+      .hidden { display: none; }
+
+      .splashscreen {
+        height: 100vh;
+        text-align: center;
+      }
+    </style>
+
+    <link rel="stylesheet" href="main.css">
   </head>
 
   <body>
+    <section class="splashscreen">
+      <h1>Tris3d</h1>
+      <noscript>
+        <p>Opsss... your JavaScript looks disabled 😒</p>
+      </noscript>
+    </section>
+
+    <main class="hidden"></main>
+
     <script src="bundle.js"></script>
   </body>
 </html>

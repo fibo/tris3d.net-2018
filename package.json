@@ -6,7 +6,9 @@
   "main": "src/client.js",
   "scripts": {
     "browserify": "browserify $npm_package_main -t babelify -o public/bundle.js",
+    "build": "npm run browserify; npm run sass",
     "lint": "standard",
+    "sass": "node-sass --include-path node_modules src/sass/main.scss --output-style compressed --output ./public/",
     "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -36,7 +38,11 @@
     "socket.io": "2.1.1"
   },
   "devDependencies": {
+    "bulma": "^0.7.1",
+    "node-sass": "^4.9.2",
+    "react": "^16.4.1",
     "standard": "^11.0.1",
+    "trunx": "^0.6.0",
     "zeroconf-redux": "^3.4.1"
   }
 }
