@@ -8,6 +8,10 @@ const pkg = require('../package.json')
 
 const app = express()
 
+const info = {
+  numUsersOnline: 0
+}
+
 // Static directory.
 
 const publicDir = path.join(__dirname, '..', 'public')
@@ -20,18 +24,20 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(publicDir, 'index.html'))
 })
 
+app.get('/info', (req, res) => {
+  res.json(info)
+})
+
 // SocketIO.
 
 const server = http.Server(app)
 const io = socketIO(server)
 
-let numUsersOnline = 0
-
 io.on('connection', socket => {
-  io.sockets.emit('numUsersOnlineChanged', ++numUsersOnline)
+  io.sockets.emit('numUsersOnlineChanged', ++info.numUsersOnline)
 
   socket.on('disconnect', () => {
-    numUsersOnline--
+    info.numUsersOnline--
   })
 })
 
