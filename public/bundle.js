@@ -33098,8 +33098,16 @@ var Root = function (_Component) {
   }
 
   _createClass(Root, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchInfo();
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var info = this.props.info;
+
+
       return _react2.default.createElement(
         _trunx.Hero,
         null,
@@ -33113,6 +33121,20 @@ var Root = function (_Component) {
               _trunx.Title,
               null,
               'Tris3d'
+            ),
+            info && _react2.default.createElement(
+              _trunx.Tags,
+              { hasAddons: true },
+              _react2.default.createElement(
+                _trunx.Tag,
+                { inInfo: true },
+                'users'
+              ),
+              _react2.default.createElement(
+                _trunx.Tag,
+                null,
+                info.numUsersOnline
+              )
             )
           )
         )
