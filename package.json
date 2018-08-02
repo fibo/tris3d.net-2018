@@ -41,12 +41,13 @@
     "socket.io": "2.1.1"
   },
   "devDependencies": {
+    "bindme": "^1.0.2",
     "bulma": "^0.7.1",
     "node-sass": "^4.9.2",
     "pre-commit": "^1.2.2",
     "redux-thunk": "^2.3.0",
     "standard": "^11.0.1",
-    "trunx": "^0.6.1",
+    "trunx": "^0.6.2",
     "zeroconf-redux": "^3.4.1"
   }
 }
