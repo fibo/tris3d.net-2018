@@ -7,12 +7,16 @@ import {
 } from './reducer'
 
 const mapStateToProps = (state, ownProps) => {
-  return state
+  return {
+    infoTab: state.info
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchInfo: () => dispatch(fetchInfoIfNeeded())
+    infoTab: {
+      fetchInfo: () => dispatch(fetchInfoIfNeeded())
+    }
   }
 }
 

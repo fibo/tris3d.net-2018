@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import bindme from 'bindme'
 
 import {
-  Container,
   Hero,
-  Tabs,
-  Tag,
-  Tags,
-  Title
+  Tabs
 } from 'trunx'
+
+import InfoTab from './InfoTab'
+import PlaygroundTab from './PlaygroundTab'
+import SettingsTab from './SettingsTab'
 
 export default class Root extends Component {
   constructor (props) {
@@ -22,58 +22,54 @@ export default class Root extends Component {
     }
   }
 
-  componentDidMount () {
-    this.props.fetchInfo()
-  }
-
   goToTab (tabNum) {
     return () => {
       this.setCurrentTab(tabNum)
     }
   }
-  render () {
-    const {
-      info
-    } = this.props
 
+  render () {
     const {
       currentTab
     } = this.state
 
+    const infoTab = 0
+    const settingsTab = 1
+    const playgroundTab = 2
+
     return (
       <Hero isFullheight>
         <Hero.Body>
-          <Container>
-            <Title>Tris3d</Title>
+          {() => {
+            switch (currentTab) {
+              case infoTab: return <InfoTab {...this.props.infoTab} />
 
-            {info && (
-              <Tags hasAddons>
-                <Tag inInfo>users</Tag>
-                <Tag>{info.numUsersOnline}</Tag>
-              </Tags>
-            )}
-          </Container>
+              case settingsTab: return <SettingsTab />
+
+              case playgroundTab: return <PlaygroundTab />
+            }
+          }}
         </Hero.Body>
 
         <Hero.Foot>
           <Tabs.Nav isBoxed>
             <Tabs.Item
-              isActive={currentTab === 0}
-              onClick={this.goToTab(0)}
+              isActive={currentTab === infoTab}
+              onClick={this.goToTab(infoTab)}
             >
               Info
             </Tabs.Item>
 
             <Tabs.Item
-              isActive={currentTab === 1}
-              onClick={this.goToTab(1)}
+              isActive={currentTab === settingsTab}
+              onClick={this.goToTab(settingsTab)}
             >
               Settings
             </Tabs.Item>
 
             <Tabs.Item
-              isActive={currentTab === 2}
-              onClick={this.goToTab(2)}
+              isActive={currentTab === playgroundTab}
+              onClick={this.goToTab(playgroundTab)}
             >
               Play
             </Tabs.Item>

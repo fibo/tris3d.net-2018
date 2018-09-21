@@ -10,7 +10,15 @@
     "lint": "standard",
     "sass": "node-sass --include-path node_modules src/sass/main.scss --output-style compressed --output ./public/",
     "start": "node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm-watch"
+  },
+  "watch": {
+    "browserify": "src/{client.js,components/*.js,redux/*.js}",
+    "sass": {
+      "patterns": ["src/sass"],
+      "extensions": "scss"
+    }
   },
   "pre-commit": [
     "lint"
@@ -44,10 +52,11 @@
     "bindme": "^1.0.2",
     "bulma": "^0.7.1",
     "node-sass": "^4.9.2",
+    "npm-watch": "^0.4.0",
     "pre-commit": "^1.2.2",
     "redux-thunk": "^2.3.0",
-    "standard": "^11.0.1",
-    "trunx": "^0.6.2",
-    "zeroconf-redux": "^3.4.1"
+    "standard": "^12.0.1",
+    "trunx": "^0.8.1",
+    "zeroconf-redux": "^4.0.1"
   }
 }

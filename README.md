@@ -2,6 +2,12 @@
 
 > Play tic tac toe in 3d
 
+## Development
+
+1. Start server locally: `npm start`.
+2. Start watching files: `npm run watch`.
+3. Edit code.
+
 ## Deploy
 
 **Only once** install Heroku CLI, login and add *heroku* git remote
