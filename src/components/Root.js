@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import bindme from 'bindme'
 
 import {
-  Hero,
   Tabs
 } from 'trunx'
 
@@ -34,48 +33,45 @@ export default class Root extends Component {
     } = this.state
 
     const infoTab = 0
+    const currentTabIsInfo = currentTab === infoTab
+
     const settingsTab = 1
+    const currentTabIsSettings = currentTab === settingsTab
+
     const playgroundTab = 2
+    const currentTabIsPlayground = currentTab === playgroundTab
 
     return (
-      <Hero isFullheight>
-        <Hero.Body>
-          {() => {
-            switch (currentTab) {
-              case infoTab: return <InfoTab {...this.props.infoTab} />
+      <div>
+        <Tabs isCentered>
+          <Tabs.Item
+            isActive={currentTabIsInfo}
+            onClick={this.goToTab(infoTab)}
+          >
+            Info
+          </Tabs.Item>
 
-              case settingsTab: return <SettingsTab />
+          <Tabs.Item
+            isActive={currentTabIsSettings}
+            onClick={this.goToTab(settingsTab)}
+          >
+            Settings
+          </Tabs.Item>
 
-              case playgroundTab: return <PlaygroundTab />
-            }
-          }}
-        </Hero.Body>
+          <Tabs.Item
+            isActive={currentTabIsPlayground}
+            onClick={this.goToTab(playgroundTab)}
+          >
+            Play
+          </Tabs.Item>
+        </Tabs>
 
-        <Hero.Foot>
-          <Tabs.Nav isBoxed>
-            <Tabs.Item
-              isActive={currentTab === infoTab}
-              onClick={this.goToTab(infoTab)}
-            >
-              Info
-            </Tabs.Item>
-
-            <Tabs.Item
-              isActive={currentTab === settingsTab}
-              onClick={this.goToTab(settingsTab)}
-            >
-              Settings
-            </Tabs.Item>
-
-            <Tabs.Item
-              isActive={currentTab === playgroundTab}
-              onClick={this.goToTab(playgroundTab)}
-            >
-              Play
-            </Tabs.Item>
-          </Tabs.Nav>
-        </Hero.Foot>
-      </Hero>
+        <div>
+          {currentTabIsInfo && <InfoTab {...this.props.infoTab} />}
+          {currentTabIsSettings && <SettingsTab />}
+          {currentTabIsPlayground && <PlaygroundTab />}
+        </div>
+      </div>
     )
   }
 
