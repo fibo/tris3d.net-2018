@@ -6347,6 +6347,7 @@ module.exports = function(arr, obj){
   return -1;
 };
 },{}],39:[function(require,module,exports){
+(function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -6368,7 +6369,7 @@ module.exports = function(arr, obj){
  */
 
 var invariant = function(condition, format, a, b, c, d, e, f) {
-  if ("production" !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
     }
@@ -6397,7 +6398,8 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-},{}],40:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":45}],40:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
@@ -6917,6 +6919,7 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],46:[function(require,module,exports){
+(function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -6928,7 +6931,7 @@ process.umask = function() { return 0; };
 
 var printWarning = function() {};
 
-if ("production" !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
   var loggedTypeFailures = {};
 
@@ -6958,7 +6961,7 @@ if ("production" !== 'production') {
  * @private
  */
 function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if ("production" !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     for (var typeSpecName in typeSpecs) {
       if (typeSpecs.hasOwnProperty(typeSpecName)) {
         var error;
@@ -7009,7 +7012,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
 module.exports = checkPropTypes;
 
-},{"./lib/ReactPropTypesSecret":50}],47:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./lib/ReactPropTypesSecret":50,"_process":45}],47:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -7071,6 +7075,7 @@ module.exports = function() {
 };
 
 },{"./lib/ReactPropTypesSecret":50}],48:[function(require,module,exports){
+(function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -7087,7 +7092,7 @@ var checkPropTypes = require('./checkPropTypes');
 
 var printWarning = function() {};
 
-if ("production" !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   printWarning = function(text) {
     var message = 'Warning: ' + text;
     if (typeof console !== 'undefined') {
@@ -7237,7 +7242,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
-    if ("production" !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       var manualPropTypeCallCache = {};
       var manualPropTypeWarningCount = 0;
     }
@@ -7255,7 +7260,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
           );
           err.name = 'Invariant Violation';
           throw err;
-        } else if ("production" !== 'production' && typeof console !== 'undefined') {
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
           // Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
@@ -7362,7 +7367,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   function createEnumTypeChecker(expectedValues) {
     if (!Array.isArray(expectedValues)) {
-      "production" !== 'production' ? printWarning('Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      process.env.NODE_ENV !== 'production' ? printWarning('Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
       return emptyFunctionThatReturnsNull;
     }
 
@@ -7405,7 +7410,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
   function createUnionTypeChecker(arrayOfTypeCheckers) {
     if (!Array.isArray(arrayOfTypeCheckers)) {
-      "production" !== 'production' ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      process.env.NODE_ENV !== 'production' ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
       return emptyFunctionThatReturnsNull;
     }
 
@@ -7627,7 +7632,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-},{"./checkPropTypes":46,"./lib/ReactPropTypesSecret":50,"object-assign":42}],49:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./checkPropTypes":46,"./lib/ReactPropTypesSecret":50,"_process":45,"object-assign":42}],49:[function(require,module,exports){
+(function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -7635,7 +7642,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
  * LICENSE file in the root directory of this source tree.
  */
 
-if ("production" !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
     Symbol.for &&
     Symbol.for('react.element')) ||
@@ -7657,7 +7664,8 @@ if ("production" !== 'production') {
   module.exports = require('./factoryWithThrowingShims')();
 }
 
-},{"./factoryWithThrowingShims":47,"./factoryWithTypeCheckers":48}],50:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./factoryWithThrowingShims":47,"./factoryWithTypeCheckers":48,"_process":45}],50:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -7672,6 +7680,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 },{}],51:[function(require,module,exports){
+(function (process){
 /** @license React v16.6.1
  * react-dom.development.js
  *
@@ -7685,7 +7694,7 @@ module.exports = ReactPropTypesSecret;
 
 
 
-if ("production" !== "production") {
+if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
@@ -27400,7 +27409,8 @@ module.exports = reactDom;
   })();
 }
 
-},{"object-assign":42,"prop-types/checkPropTypes":46,"react":75,"scheduler":84,"scheduler/tracing":85}],52:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":45,"object-assign":42,"prop-types/checkPropTypes":46,"react":75,"scheduler":84,"scheduler/tracing":85}],52:[function(require,module,exports){
 /** @license React v16.6.1
  * react-dom.production.min.js
  *
@@ -27652,6 +27662,7 @@ Ka,La,Ca.injectEventPluginsByName,qa,Ra,function(a){za(a,Qa)},Ib,Jb,Jd,Ea]},unst
 var ei={default:bi},fi=ei&&bi||ei;module.exports=fi.default||fi;
 
 },{"object-assign":42,"react":75,"scheduler":84}],53:[function(require,module,exports){
+(function (process){
 'use strict';
 
 function checkDCE() {
@@ -27662,7 +27673,7 @@ function checkDCE() {
   ) {
     return;
   }
-  if ("production" !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     // This branch is unreachable because this function is only called
     // in production, but the condition is true only in development.
     // Therefore if the branch is still here, dead code elimination wasn't
@@ -27682,7 +27693,7 @@ function checkDCE() {
   }
 }
 
-if ("production" === 'production') {
+if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
@@ -27691,7 +27702,8 @@ if ("production" === 'production') {
   module.exports = require('./cjs/react-dom.development.js');
 }
 
-},{"./cjs/react-dom.development.js":51,"./cjs/react-dom.production.min.js":52}],54:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./cjs/react-dom.development.js":51,"./cjs/react-dom.production.min.js":52,"_process":45}],54:[function(require,module,exports){
 (function (process){
 /** @license React v16.6.1
  * react-is.development.js
@@ -27930,6 +27942,7 @@ if (process.env.NODE_ENV === 'production') {
 
 }).call(this,require('_process'))
 },{"./cjs/react-is.development.js":54,"./cjs/react-is.production.min.js":55,"_process":45}],57:[function(require,module,exports){
+(function (process){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -27995,7 +28008,7 @@ function createProvider(storeKey) {
     return Provider;
   }(_react.Component);
 
-  if ("production" !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     Provider.prototype.componentWillReceiveProps = function (nextProps) {
       if (this[storeKey] !== nextProps.store) {
         warnAboutReceivingStore();
@@ -28014,7 +28027,9 @@ function createProvider(storeKey) {
 var _default = createProvider();
 
 exports.default = _default;
-},{"../utils/PropTypes":67,"../utils/warning":72,"@babel/runtime/helpers/inheritsLoose":3,"@babel/runtime/helpers/interopRequireDefault":4,"prop-types":49,"react":75}],58:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"../utils/PropTypes":67,"../utils/warning":72,"@babel/runtime/helpers/inheritsLoose":3,"@babel/runtime/helpers/interopRequireDefault":4,"_process":45,"prop-types":49,"react":75}],58:[function(require,module,exports){
+(function (process){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -28287,7 +28302,7 @@ _ref) {
     Connect.contextTypes = contextTypes;
     Connect.propTypes = contextTypes;
 
-    if ("production" !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       Connect.prototype.componentWillUpdate = function componentWillUpdate() {
         var _this2 = this;
 
@@ -28322,7 +28337,8 @@ _ref) {
     return (0, _hoistNonReactStatics.default)(Connect, WrappedComponent);
   };
 }
-},{"../utils/PropTypes":67,"../utils/Subscription":68,"@babel/runtime/helpers/assertThisInitialized":1,"@babel/runtime/helpers/extends":2,"@babel/runtime/helpers/inheritsLoose":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/objectWithoutPropertiesLoose":6,"hoist-non-react-statics":36,"invariant":39,"react":75,"react-is":56}],59:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"../utils/PropTypes":67,"../utils/Subscription":68,"@babel/runtime/helpers/assertThisInitialized":1,"@babel/runtime/helpers/extends":2,"@babel/runtime/helpers/inheritsLoose":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/objectWithoutPropertiesLoose":6,"_process":45,"hoist-non-react-statics":36,"invariant":39,"react":75,"react-is":56}],59:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -28494,6 +28510,7 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 var _default = [whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing];
 exports.default = _default;
 },{"./wrapMapToProps":65}],62:[function(require,module,exports){
+(function (process){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -28528,7 +28545,7 @@ function wrapMergePropsFunc(mergeProps) {
       } else {
         hasRunOnce = true;
         mergedProps = nextMergedProps;
-        if ("production" !== 'production') (0, _verifyPlainObject.default)(mergedProps, displayName, 'mergeProps');
+        if (process.env.NODE_ENV !== 'production') (0, _verifyPlainObject.default)(mergedProps, displayName, 'mergeProps');
       }
 
       return mergedProps;
@@ -28548,7 +28565,9 @@ function whenMergePropsIsOmitted(mergeProps) {
 
 var _default = [whenMergePropsIsFunction, whenMergePropsIsOmitted];
 exports.default = _default;
-},{"../utils/verifyPlainObject":71,"@babel/runtime/helpers/extends":2,"@babel/runtime/helpers/interopRequireDefault":4}],63:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"../utils/verifyPlainObject":71,"@babel/runtime/helpers/extends":2,"@babel/runtime/helpers/interopRequireDefault":4,"_process":45}],63:[function(require,module,exports){
+(function (process){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -28641,14 +28660,15 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
   var mapDispatchToProps = initMapDispatchToProps(dispatch, options);
   var mergeProps = initMergeProps(dispatch, options);
 
-  if ("production" !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     (0, _verifySubselectors.default)(mapStateToProps, mapDispatchToProps, mergeProps, options.displayName);
   }
 
   var selectorFactory = options.pure ? pureFinalPropsSelectorFactory : impureFinalPropsSelectorFactory;
   return selectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, options);
 }
-},{"./verifySubselectors":64,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/objectWithoutPropertiesLoose":6}],64:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./verifySubselectors":64,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/objectWithoutPropertiesLoose":6,"_process":45}],64:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -28674,6 +28694,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
   verify(mergeProps, 'mergeProps', displayName);
 }
 },{"../utils/warning":72,"@babel/runtime/helpers/interopRequireDefault":4}],65:[function(require,module,exports){
+(function (process){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -28743,14 +28764,15 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
         props = proxy(stateOrDispatch, ownProps);
       }
 
-      if ("production" !== 'production') (0, _verifyPlainObject.default)(props, displayName, methodName);
+      if (process.env.NODE_ENV !== 'production') (0, _verifyPlainObject.default)(props, displayName, methodName);
       return props;
     };
 
     return proxy;
   };
 }
-},{"../utils/verifyPlainObject":71,"@babel/runtime/helpers/interopRequireDefault":4}],66:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"../utils/verifyPlainObject":71,"@babel/runtime/helpers/interopRequireDefault":4,"_process":45}],66:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -28994,6 +29016,7 @@ function warning(message) {
 
 }
 },{}],73:[function(require,module,exports){
+(function (process){
 /** @license React v16.6.1
  * react.development.js
  *
@@ -29007,7 +29030,7 @@ function warning(message) {
 
 
 
-if ("production" !== "production") {
+if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
@@ -30835,7 +30858,8 @@ module.exports = react;
   })();
 }
 
-},{"object-assign":42,"prop-types/checkPropTypes":46}],74:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":45,"object-assign":42,"prop-types/checkPropTypes":46}],74:[function(require,module,exports){
 /** @license React v16.6.1
  * react.production.min.js
  *
@@ -30862,15 +30886,17 @@ if(null!=b){void 0!==b.ref&&(h=b.ref,f=K.current);void 0!==b.key&&(g=""+b.key);v
 __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurrentOwner:K,assign:k}};X.unstable_ConcurrentMode=x;X.unstable_Profiler=u;var Y={default:X},Z=Y&&X||Y;module.exports=Z.default||Z;
 
 },{"object-assign":42}],75:[function(require,module,exports){
+(function (process){
 'use strict';
 
-if ("production" === 'production') {
+if (process.env.NODE_ENV === 'production') {
   module.exports = require('./cjs/react.production.min.js');
 } else {
   module.exports = require('./cjs/react.development.js');
 }
 
-},{"./cjs/react.development.js":73,"./cjs/react.production.min.js":74}],76:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./cjs/react.development.js":73,"./cjs/react.production.min.js":74,"_process":45}],76:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -30895,6 +30921,7 @@ thunk.withExtraArgument = createThunkMiddleware;
 
 exports['default'] = thunk;
 },{}],77:[function(require,module,exports){
+(function (process){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -31295,7 +31322,7 @@ function combineReducers(reducers) {
   for (var i = 0; i < reducerKeys.length; i++) {
     var key = reducerKeys[i];
 
-    if ("production" !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       if (typeof reducers[key] === 'undefined') {
         warning("No reducer provided for key \"" + key + "\"");
       }
@@ -31309,7 +31336,7 @@ function combineReducers(reducers) {
   var finalReducerKeys = Object.keys(finalReducers);
   var unexpectedKeyCache;
 
-  if ("production" !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     unexpectedKeyCache = {};
   }
 
@@ -31330,7 +31357,7 @@ function combineReducers(reducers) {
       throw shapeAssertionError;
     }
 
-    if ("production" !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
 
       if (warningMessage) {
@@ -31532,7 +31559,7 @@ function applyMiddleware() {
 
 function isCrushed() {}
 
-if ("production" !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
   warning('You are currently using minified code outside of NODE_ENV === "production". ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) ' + 'to ensure you have the correct code for your production build.');
 }
 
@@ -31543,7 +31570,8 @@ exports.applyMiddleware = applyMiddleware;
 exports.compose = compose;
 exports.__DO_NOT_USE__ActionTypes = ActionTypes;
 
-},{"symbol-observable":78}],78:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":45,"symbol-observable":78}],78:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -31600,6 +31628,7 @@ function symbolObservablePonyfill(root) {
 	return result;
 };
 },{}],80:[function(require,module,exports){
+(function (process){
 /** @license React v0.11.3
  * scheduler-tracing.development.js
  *
@@ -31613,7 +31642,7 @@ function symbolObservablePonyfill(root) {
 
 
 
-if ("production" !== "production") {
+if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
@@ -32021,7 +32050,8 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
   })();
 }
 
-},{}],81:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":45}],81:[function(require,module,exports){
 /** @license React v0.11.3
  * scheduler-tracing.production.min.js
  *
@@ -32034,7 +32064,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 'use strict';Object.defineProperty(exports,"__esModule",{value:!0});var b=0;exports.__interactionsRef=null;exports.__subscriberRef=null;exports.unstable_clear=function(a){return a()};exports.unstable_getCurrent=function(){return null};exports.unstable_getThreadID=function(){return++b};exports.unstable_trace=function(a,d,c){return c()};exports.unstable_wrap=function(a){return a};exports.unstable_subscribe=function(){};exports.unstable_unsubscribe=function(){};
 
 },{}],82:[function(require,module,exports){
-(function (global){
+(function (process,global){
 /** @license React v0.11.3
  * scheduler.development.js
  *
@@ -32048,7 +32078,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 
 
 
-if ("production" !== "production") {
+if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
@@ -32670,8 +32700,8 @@ exports.unstable_shouldYield = unstable_shouldYield;
   })();
 }
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],83:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"_process":45}],83:[function(require,module,exports){
 (function (global){
 /** @license React v0.11.3
  * scheduler.production.min.js
@@ -32697,24 +32727,28 @@ exports.unstable_shouldYield=function(){return!f&&(null!==d&&d.expirationTime<l|
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],84:[function(require,module,exports){
+(function (process){
 'use strict';
 
-if ("production" === 'production') {
+if (process.env.NODE_ENV === 'production') {
   module.exports = require('./cjs/scheduler.production.min.js');
 } else {
   module.exports = require('./cjs/scheduler.development.js');
 }
 
-},{"./cjs/scheduler.development.js":82,"./cjs/scheduler.production.min.js":83}],85:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./cjs/scheduler.development.js":82,"./cjs/scheduler.production.min.js":83,"_process":45}],85:[function(require,module,exports){
+(function (process){
 'use strict';
 
-if ("production" === 'production') {
+if (process.env.NODE_ENV === 'production') {
   module.exports = require('./cjs/scheduler-tracing.production.min.js');
 } else {
   module.exports = require('./cjs/scheduler-tracing.development.js');
 }
 
-},{"./cjs/scheduler-tracing.development.js":80,"./cjs/scheduler-tracing.production.min.js":81}],86:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./cjs/scheduler-tracing.development.js":80,"./cjs/scheduler-tracing.production.min.js":81,"_process":45}],86:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -37021,11 +37055,6 @@ function (_Component) {
   }
 
   _createClass(InfoTab, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchInfo();
-    }
-  }, {
     key: "render",
     value: function render() {
       var numUsersOnline = this.props.numUsersOnline;
@@ -37276,9 +37305,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function configureStore() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState.default;
-  return (0, _redux.createStore)(_reducer.default, state, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-    return f;
-  }));
+  return (0, _redux.createStore)(_reducer.default, state, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk.default), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 }
 
 },{"./initialState":147,"./reducer":149,"redux":77,"redux-thunk":76}],146:[function(require,module,exports){
@@ -37293,8 +37320,6 @@ var _reactRedux = require("react-redux");
 
 var _Root = _interopRequireDefault(require("../components/Root"));
 
-var _reducer = require("./reducer");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
@@ -37304,20 +37329,14 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    infoTab: {
-      fetchInfo: function fetchInfo() {
-        return dispatch((0, _reducer.fetchInfoIfNeeded)());
-      }
-    }
-  };
+  return {};
 };
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Root.default);
 
 exports.default = _default;
 
-},{"../components/Root":143,"./reducer":149,"react-redux":66}],147:[function(require,module,exports){
+},{"../components/Root":143,"react-redux":66}],147:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37339,6 +37358,8 @@ exports.initSocketIO = initSocketIO;
 
 var _socket = _interopRequireDefault(require("socket.io-client"));
 
+var _reducer = require("../reducer");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var socket = null;
@@ -37349,20 +37370,21 @@ function initSocketIO() {
     console.log('connected');
   });
   socket.on('numUsersOnlineChanged', function (numUsersOnline) {
-    console.log("numUsersOnline ".concat(numUsersOnline));
+    console.log(numUsersOnline);
+    (0, _reducer.numUsersOnlineChanged)(numUsersOnline);
   });
   socket.on('disconnect', function () {
     console.log('disconnected');
   });
 }
 
-},{"socket.io-client":86}],149:[function(require,module,exports){
+},{"../reducer":149,"socket.io-client":86}],149:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchInfoIfNeeded = fetchInfoIfNeeded;
+exports.numUsersOnlineChanged = numUsersOnlineChanged;
 exports.default = reducer;
 
 var _initialState = _interopRequireDefault(require("./initialState"));
@@ -37370,75 +37392,68 @@ var _initialState = _interopRequireDefault(require("./initialState"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* global fetch */
-var FETCH_INFO_FAILURE = 'FETCH_INFO_FAILURE';
-var FETCH_INFO_REQUEST = 'FETCH_INFO_REQUEST';
-var FETCH_INFO_SUCCESS = 'FETCH_INFO_SUCCESS';
-var headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
+// const FETCH_INFO_FAILURE = 'FETCH_INFO_FAILURE'
+// const FETCH_INFO_REQUEST = 'FETCH_INFO_REQUEST'
+// const FETCH_INFO_SUCCESS = 'FETCH_INFO_SUCCESS'
+var NUM_USERS_ONLINE_CHANGED = 'NUM_USERS_ONLINE_CHANGED'; // const headers = {
+//   'Accept': 'application/json',
+//   'Content-Type': 'application/json'
+// }
+// const checkStatus = response => {
+//   if (response.ok) {
+//     return response.json()
+//   } else {
+//     const error = new Error(response.statusText)
+//     error.response = response
+//     throw error
+//   }
+// }
+// function fetchInfo () {
+//   return dispatch => {
+//     dispatch({ type: FETCH_INFO_REQUEST })
+//     fetch('/info', { headers, method: 'GET' })
+//       .then(checkStatus)
+//       .then(data => { dispatch({ type: FETCH_INFO_SUCCESS, data }) })
+//       .catch(error => { dispatch({ type: FETCH_INFO_FAILURE, error }) })
+//   }
+// }
+// export function fetchInfoIfNeeded () {
+//   return (dispatch, getState) => {
+//     const state = getState()
+//     if (shouldFetchInfo(state)) {
+//       return dispatch(fetchInfo())
+//     }
+//   }
+// }
 
-var checkStatus = function checkStatus(response) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    var error = new Error(response.statusText);
-    error.response = response;
-    throw error;
-  }
-};
-
-function fetchInfo() {
+function numUsersOnlineChanged(numUsersOnline) {
   return function (dispatch) {
-    dispatch({
-      type: FETCH_INFO_REQUEST
-    });
-    fetch('/info', {
-      headers: headers,
-      method: 'GET'
-    }).then(checkStatus).then(function (data) {
-      dispatch({
-        type: FETCH_INFO_SUCCESS,
-        data: data
-      });
-    }).catch(function (error) {
-      dispatch({
-        type: FETCH_INFO_FAILURE,
-        error: error
-      });
+    return dispatch({
+      type: NUM_USERS_ONLINE_CHANGED,
+      numUsersOnline: numUsersOnline
     });
   };
-}
+} // function shouldFetchInfo ({ info }) {
+//   return info === null
+// }
 
-function fetchInfoIfNeeded() {
-  return function (dispatch, getState) {
-    var state = getState();
-
-    if (shouldFetchInfo(state)) {
-      return dispatch(fetchInfo());
-    }
-  };
-}
-
-function shouldFetchInfo(_ref) {
-  var info = _ref.info;
-  return info === null;
-}
 
 function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState.default;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case FETCH_INFO_FAILURE:
-      return state;
-
-    case FETCH_INFO_REQUEST:
-      return state;
-
-    case FETCH_INFO_SUCCESS:
+    // case FETCH_INFO_FAILURE:
+    //   return state
+    // case FETCH_INFO_REQUEST:
+    //   return state
+    // case FETCH_INFO_SUCCESS:
+    //   return Object.assign({}, state, { info: action.data })
+    case NUM_USERS_ONLINE_CHANGED:
       return Object.assign({}, state, {
-        info: action.data
+        info: Object.assign({}, state.info, {
+          numUsersOnline: action.numUsersOnline
+        })
       });
 
     default:

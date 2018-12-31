@@ -35,6 +35,7 @@ const io = socketIO(server)
 
 io.on('connection', socket => {
   io.sockets.emit('numUsersOnlineChanged', ++info.numUsersOnline)
+  console.log('connection', info.numUsersOnline)
 
   socket.on('disconnect', () => {
     info.numUsersOnline--

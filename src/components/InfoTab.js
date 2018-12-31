@@ -8,10 +8,6 @@ import {
 } from 'trunx'
 
 export default class InfoTab extends Component {
-  componentDidMount () {
-    this.props.fetchInfo()
-  }
-
   render () {
     const {
       numUsersOnline

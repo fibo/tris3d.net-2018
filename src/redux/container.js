@@ -2,10 +2,6 @@ import { connect } from 'react-redux'
 
 import Root from '../components/Root'
 
-import {
-  fetchInfoIfNeeded
-} from './reducer'
-
 const mapStateToProps = (state, ownProps) => {
   return {
     infoTab: state.info
@@ -14,9 +10,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    infoTab: {
-      fetchInfo: () => dispatch(fetchInfoIfNeeded())
-    }
   }
 }
 

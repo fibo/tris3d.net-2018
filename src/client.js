@@ -5,9 +5,6 @@ import { Provider } from 'react-redux'
 import App from './redux/container'
 import configureStore from './redux/configureStore'
 
-import { initSocketIO } from './redux/middleware/socketIO'
-initSocketIO()
-
 const splashscreen = document.querySelector('.splashscreen')
 const main = document.querySelector('main')
 
